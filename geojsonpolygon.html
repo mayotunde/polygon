@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Adding geojson polygon features on leaflet powered map</title>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body>
+<div id="map" style="width: 700px;height: 500px"></div>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([14.29, 2.85], 3);
+mapLink = '<a href="http://openstreetmap.org">openstreetmap</a>,'+'<a href="http://mapsnigeriainitiative.wordpress.com">mapsNI</a>';
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: ' &copy; ' + mapLink,maxZoom: 18}).addTo(map);
+
+var areas = [{
+    "type": "Feature",
+    "properties": {"refugeeType": "low"},
+    "geometry": { "type": "Polygon", "coordinates": [[
+    [1.17, 23.84], [3.11, 24.79],   [3.78, 24.56],  [6.94, 23.05],
+    [-3.34, 23.53], [-0.10, 19.38], [4.84, 19.57]
+    ]]
+    }
+     }, {
+    "type": "Feature",
+    "properties": {"refugeeType": "low"},
+    "geometry": {"type": "Polygon","coordinates": [[
+    [3.17, 4.84], [9.11, 8.79], [6.78, 4.56], [4.94, 4.05]
+        ]]
+    }
+     }, {
+    "type": "Feature",
+    "properties": {"refugeeType": "high"},
+    "geometry": {"type": "Polygon", "coordinates": [[
+    [25.36, 11.55], [25.08, 6.53], [28.32, 2.30],
+    [33.82, 1.71], [36.51, 8.94], [35.68, 13.41],
+    [27.77, 13.21]
+    ]]
+    }
+    }];
+
+var Style = {
+"color": "#813", "weight": 5, "opacity": 0.65
+};
+
+
+L.geoJson(areas, {
+    style: Style
+}).addTo(map);   
+  
+
+</script>
+</body>
+</html>
